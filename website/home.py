@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from PIL import Image
 
 st.markdown(
     """
@@ -20,8 +21,6 @@ st.markdown(
     <span>Rachel Fanggian</span>
     <span>Derwin Suhartono</span>
 </h5>
-
-
 """, unsafe_allow_html=True
 )
 
@@ -35,8 +34,7 @@ Sarkasme merupakan bentuk komunikasi yang sering ditemukan di media sosial dan m
 """
 , unsafe_allow_html=True)
 
-st.image("assets/Kerangka Berpikir.png")
-
+st.image(Image.open("website/assets/Kerangka Berpikir.png"))
 
 st.markdown(
     """
@@ -67,7 +65,7 @@ kesimpulan yang diperoleh:
 2. **Efektivitas Teknik Prompting**: Teknik few-shot prompting memberikan hasil terbaik dalam meningkatkan performa model deteksi sarkasme, diikuti oleh one-shot dan zero-shot. Efektivitas teknik sangat dipengaruhi oleh kualitas semantik data asli, dengan peningkatan kecil pada dataset Reddit yang memiliki konteks sarkasme lemah.
 
 """)
-st.image("assets/result.png", width=900)
+st.image(Image.open("website/assets/result.png"), width=900)
 
 st.markdown("""
 3. **Proporsi Optimal Data Sintetis**: Penambahan data sintetis yang optimal berbeda di tiap kasus: 30% (IndoNLU IndoBERT) dan 10% (XLM-R) pada Twitter; 50% (IndoNLU IndoBERT) dan 40–50% (XLM-R) pada Reddit. Perbedaan ini mencerminkan kebutuhan data sintetis bergantung pada arsitektur model dan kualitas data asli.

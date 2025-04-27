@@ -7,7 +7,7 @@ from streamlit_javascript import st_javascript
 def run(name: str, title: str):
     dark_mode = st_javascript("""function darkMode(i){return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)}(1)""")
 
-    icon = Image.open(f"assets/{name}.png") 
+    icon = Image.open(f"website/assets/{name}.png")
     col1, col2 = st.columns([1, 11], vertical_alignment="center")
     with col1:
         st.image(icon)
