@@ -72,7 +72,7 @@ st.image("assets/result.png", width=900)
 st.markdown("""
 3. **Proporsi Optimal Data Sintetis**: Penambahan data sintetis yang optimal berbeda di tiap kasus: 30% (IndoNLU IndoBERT) dan 10% (XLM-R) pada Twitter; 50% (IndoNLU IndoBERT) dan 40–50% (XLM-R) pada Reddit. Perbedaan ini mencerminkan kebutuhan data sintetis bergantung pada arsitektur model dan kualitas data asli.
 
-#### Daftar Model 
+#### Model 
 Berikut adalah model dengan performa terbaik untuk mendeteksi sarkasme pada platform Twitter dan Reddit. Anda dapat mengakses model lengkap melalui link HuggingFace atau mencoba langsung kemampuan deteksi model melalui website.
 """)
 
