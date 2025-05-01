@@ -3,10 +3,20 @@ from PIL import Image
 import pandas as pd
 import altair as alt
 from streamlit_javascript import st_javascript
+from transformers import pipeline
+
+# Load models only once
+@st.cache_resource
+def load_model(model_name: str):
+    if model_name == "twitter":
+        return pipeline("text-classification", model="enoubi/XLM-RoBERTa-Twitter-Indonesian-Sarcastic-Few-Shot")
+    elif model_name == "reddit":
+        return pipeline("text-classification", model="enoubi/XLM-RoBERTa-Reddit-Indonesian-Sarcastic-Few-Shot")
 
 def run(name: str, title: str):
     dark_mode = st_javascript("""function darkMode(i){return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)}(1)""")
 
+    model = load_model(name)
     icon = Image.open(f"website/assets/{name}.png")
     col1, col2 = st.columns([1, 11], vertical_alignment="center")
     with col1:
@@ -50,7 +60,7 @@ def run(name: str, title: str):
             st.error("Teks tidak boleh kosong. Mohon isi teks terlebih dahulu.", icon=':material/cancel:')
         else:
             with st.spinner('Sedang menganalisis teks, harap tunggu...', show_time=True):
-                res = st.session_state[name + "_model"](text)[0]
+                res = model(text)[0]
                 label_map = {"LABEL_0": "Bukan Sarkasme", "LABEL_1": "Sarkasme"}
                 pred = label_map.get(res["label"], res["label"])
                 conf_pct = res["score"] # percent

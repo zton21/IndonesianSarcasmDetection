@@ -1,5 +1,4 @@
 import streamlit as st
-from transformers import pipeline
 
 # Streamlit Page Configuration
 st.set_page_config(
@@ -52,19 +51,6 @@ st.markdown("""
             #stDecoration {display:none;}
         </style>
         """, unsafe_allow_html=True)
-
-# Load models only once using session state
-if "twitter_model" not in st.session_state:
-    st.session_state.twitter_model = pipeline(
-        "text-classification",
-        model="enoubi/XLM-RoBERTa-Twitter-Indonesian-Sarcastic-Few-Shot"
-    )
-
-if "reddit_model" not in st.session_state:
-    st.session_state.reddit_model = pipeline(
-        "text-classification",
-        model="enoubi/XLM-RoBERTa-Reddit-Indonesian-Sarcastic-Few-Shot"
-    )
 
 # Initialize session state for inputs
 st.session_state.setdefault("twitter_input", "")
