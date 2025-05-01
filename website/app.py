@@ -77,7 +77,7 @@ st.session_state.setdefault("reddit_input", "")
 st.session_state.setdefault("last", "")
 # Define available pages
 pages = {
-    "": [st.Page("home.py", title="Home", icon="")],
+    "": [st.Page("home.py", title="Beranda", icon="")],
     "Deteksi Sarkasme": [
         st.Page("twitter.py", title="   Twitter", icon=""),
         st.Page("reddit.py", title="   Reddit", icon="")
