@@ -1,11 +1,9 @@
 import streamlit as st
 from transformers import pipeline
-import config
 
 # Streamlit Page Configuration
 st.set_page_config(
     page_title="Deteksi Sarkasme",
-    # page_icon="assets/icon.png", 
     layout="wide"
 )
 
@@ -59,31 +57,28 @@ st.markdown("""
 if "twitter_model" not in st.session_state:
     st.session_state.twitter_model = pipeline(
         "text-classification",
-        model="enoubi/XLM-RoBERTa-Twitter-Indonesian-Sarcastic-Few-Shot",
-        token=config.TOKEN
+        model="enoubi/XLM-RoBERTa-Twitter-Indonesian-Sarcastic-Few-Shot"
     )
 
 if "reddit_model" not in st.session_state:
     st.session_state.reddit_model = pipeline(
         "text-classification",
-        model="enoubi/XLM-RoBERTa-Reddit-Indonesian-Sarcastic-Few-Shot",
-        token=config.TOKEN
+        model="enoubi/XLM-RoBERTa-Reddit-Indonesian-Sarcastic-Few-Shot"
     )
 
 # Initialize session state for inputs
 st.session_state.setdefault("twitter_input", "")
 st.session_state.setdefault("reddit_input", "")
-
 st.session_state.setdefault("last", "")
+
 # Define available pages
 pages = {
     "": [st.Page("home.py", title="Beranda", icon="")],
     "Deteksi Sarkasme": [
-        st.Page("twitter.py", title="   Twitter", icon=""),
-        st.Page("reddit.py", title="   Reddit", icon="")
+        st.Page("twitter.py", title="Twitter", icon=""),
+        st.Page("reddit.py", title="Reddit", icon="")
     ]
 }
-
 
 # Navigation initialization
 pg = st.navigation(pages, expanded=True)

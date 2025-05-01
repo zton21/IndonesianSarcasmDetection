@@ -1,3 +1,6 @@
 datasets
 transformers
 evaluate
+torch
+streamlit_javascript
+streamlit==1.42.2
