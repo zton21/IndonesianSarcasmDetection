@@ -1,0 +1,33 @@
+import pandas as pd
+import re
+
+def clean_text(text):
+    text = re.sub(r"#\S+", "<hashtag>", text)  # Replace hashtags with <hashtag>
+    return text
+
+# Load the generated synthetic data
+input_csv = "output/fewshot.csv"
+output_csv = "final/fewshot.csv"
+df = pd.read_csv(input_csv)
+
+texts = []
+if "Output" in df.columns:
+    generated = df["Output"].dropna().tolist() 
+    for row in generated:
+        row = row.strip()
+        if len(row) > 0:
+            texts.append(row)
+else:
+    raise ValueError("Column 'Output' not found in CSV!")
+
+texts = [clean_text(text) for text in texts]
+
+# Create DataFrame with label = 1
+df = pd.DataFrame({"text": texts, "label": 1})
+
+# Save to CSV
+df.to_csv(output_csv, index=False)
+
+# Print sample
+print(df.head())
+print(f"Dataset saved to: {output_csv}")
